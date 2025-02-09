@@ -1,66 +1,85 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!-- Favicon -->
-    <link rel="icon" type="image/png" sizes="32x32" href="icon/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="icon/favicon-16x16.png">
-    <link rel="shortcut icon" href="icon/favicon.ico">
-    
-    <!-- Apple Touch Icon (for iPhones & iPads) -->
-    <link rel="apple-touch-icon" sizes="180x180" href="icon/apple-touch-icon.png">
-    
-    <!-- Web App Manifest -->
-    <link rel="manifest" href="manifest.json">
-    
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    <!-- Enable Fullscreen PWA -->
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     
-    <title>YouTube Fullscreen</title>
-
-    <script>
-        function openYouTube() {
-            let youtubeUrl = "https://www.youtube.com";
-            let newWindow = window.open(youtubeUrl, "_blank", "fullscreen=yes");
-
-            if (newWindow) {
-                newWindow.focus();
-            } else {
-                alert("Please allow pop-ups to enable fullscreen mode.");
-            }
-        }
-
-        // Auto-open YouTube when page loads
-        window.onload = openYouTube;
-    </script>
+    <title>YouTube Fullscreen WebApp</title>
 
     <style>
-        body {
+        * {
             margin: 0;
             padding: 0;
+            box-sizing: border-box;
+        }
+        body {
             background: black;
+            overflow: hidden;
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
-            overflow: hidden;
         }
-        button {
-            font-size: 20px;
-            padding: 15px 30px;
+        #fullscreenBtn {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: rgba(0, 0, 0, 0.5);
             border: none;
-            background-color: red;
-            color: white;
+            padding: 10px;
+            border-radius: 50%;
             cursor: pointer;
-            border-radius: 5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0.5;
+            transition: opacity 0.3s;
+        }
+        #fullscreenBtn:hover {
+            opacity: 1;
+        }
+        #fullscreenBtn img {
+            width: 25px;
+            height: 25px;
         }
     </style>
+
+    <script>
+        // Redirects to YouTube in the same window
+        function openYouTube() {
+            window.location.replace("https://www.youtube.com");
+        }
+
+        // Toggles fullscreen mode
+        function toggleFullscreen() {
+            let elem = document.documentElement;
+            if (!document.fullscreenElement) {
+                if (elem.requestFullscreen) {
+                    elem.requestFullscreen();
+                } else if (elem.mozRequestFullScreen) {
+                    elem.mozRequestFullScreen();
+                } else if (elem.webkitRequestFullscreen) {
+                    elem.webkitRequestFullscreen();
+                } else if (elem.msRequestFullscreen) {
+                    elem.msRequestFullscreen();
+                }
+            } else {
+                if (document.exitFullscreen) {
+                    document.exitFullscreen();
+                }
+            }
+        }
+    </script>
 </head>
-<body>
-    <button onclick="openYouTube()">Open YouTube</button>
+<body onload="openYouTube()">
+    
+    <!-- Fullscreen Button -->
+    <button id="fullscreenBtn" onclick="toggleFullscreen()">
+        <img src="icon/fullscreen-icon.png" alt="Fullscreen">
+    </button>
+
 </body>
 </html>
