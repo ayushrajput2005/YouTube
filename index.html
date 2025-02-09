@@ -7,7 +7,9 @@
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     
-    <title>YouTube Fullscreen WebApp</title>
+    <title>YouTube WebApp</title>
+
+    <link rel="manifest" href="manifest.json">
 
     <style>
         * {
@@ -17,7 +19,6 @@
         }
         body {
             background: black;
-            overflow: hidden;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -48,12 +49,10 @@
     </style>
 
     <script>
-        // Redirects to YouTube in the same window
         function openYouTube() {
             window.location.replace("https://www.youtube.com");
         }
 
-        // Toggles fullscreen mode
         function toggleFullscreen() {
             let elem = document.documentElement;
             if (!document.fullscreenElement) {
