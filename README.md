@@ -12,7 +12,7 @@
    - Make sure Brave is set as your default browser for the best experience.  
 
 3. **Access the WebApp**  
-   - Open Brave and go to: `<//I'll put the link here later>`  
+   - Open Brave and go to: `https://ayushrajput2005.github.io/YouTube/`  
    
 4. **Sign In**  
    - Sign in with your Google account to access your YouTube subscriptions and preferences.  
