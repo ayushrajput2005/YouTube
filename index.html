@@ -1,34 +1,66 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" sizes="32x32" href="icon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="icon/favicon-16x16.png">
+    <link rel="shortcut icon" href="icon/favicon.ico">
+    
+    <!-- Apple Touch Icon (for iPhones & iPads) -->
+    <link rel="apple-touch-icon" sizes="180x180" href="icon/apple-touch-icon.png">
+    
+    <!-- Web App Manifest -->
     <link rel="manifest" href="manifest.json">
+    
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Enable Fullscreen PWA -->
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    
     <title>YouTube Fullscreen</title>
-    <link rel="manifest" href="manifest.json">
+
     <script>
         function openYouTube() {
-            window.location.href = "https://www.youtube.com?fs=1";
+            let youtubeUrl = "https://www.youtube.com";
+            let newWindow = window.open(youtubeUrl, "_blank", "fullscreen=yes");
+
+            if (newWindow) {
+                newWindow.focus();
+            } else {
+                alert("Please allow pop-ups to enable fullscreen mode.");
+            }
         }
+
+        // Auto-open YouTube when page loads
+        window.onload = openYouTube;
     </script>
+
     <style>
         body {
+            margin: 0;
+            padding: 0;
+            background: black;
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
-            background: black;
+            overflow: hidden;
         }
         button {
             font-size: 20px;
-            padding: 10px 20px;
+            padding: 15px 30px;
+            border: none;
+            background-color: red;
+            color: white;
+            cursor: pointer;
+            border-radius: 5px;
         }
     </style>
 </head>
-<body onload="openYouTube()">
+<body>
     <button onclick="openYouTube()">Open YouTube</button>
 </body>
 </html>
-<!-- made by ayush rajput -->
